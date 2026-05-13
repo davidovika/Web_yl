@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="service-detail">
+    <a href="/" class="back-btn">← Назад к услугам</a>
+
+    <div class="service-header">
+        <h1>{{ service.name|capitalize }}</h1>
+    </div>
+
+    <div class="service-content">
+        <div class="service-image">
+            <img src="{{ url_for('static', filename='pictures/' + service.image) }}"
+                 alt="{{ service.name }}">
+        </div>
+
+        <div class="service-info">
+            <div class="info-block">
+                <p>{{ service.description }}</p>
+            </div>
+
+            <div class="info-block">
+                <p class="price">{{ service.price }}</p>
+            </div>
+
+            <div class="info-block">
+                <p>{{ service.benefits }}</p>
+            </div>
+
+            <div class="action-buttons">
+                <button onclick="window.location.href='/addjob?problem={{ service.name }}'" class="order-btn">
+                    Оформить заявку
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.service-detail {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.back-btn {
+    display: inline-block;
+    background: #293133;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: background 0.3s;
+}
+
+.back-btn:hover {
+    background: #5a67d8;
+    color: white;
+}
+
+.service-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.service-header h1 {
+    color: #333;
+    font-size: 32px;
+}
+
+.service-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+
+.service-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.service-info {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.info-block {
+    margin-bottom: 25px;
+}
+
+.info-block h3 {
+    color: #293133;
+    margin-bottom: 10px;
+}
+
+.price {
+    font-size: 28px;
+    font-weight: bold;
+    color: #293133;
+}
+
+.action-buttons {
+    margin-top: 30px;
+}
+
+.order-btn {
+    width: 100%;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    background: #293133;
+    color: white;
+}
+
+.order-btn:hover {
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    .service-content {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+{% endblock %}
